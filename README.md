@@ -1,6 +1,5 @@
 # Local EGA main repository
 
-
 [![Documentation Status](https://readthedocs.org/projects/localega/badge/?version=latest)](https://localega.readthedocs.io/en/latest/?badge=latest)
 
 The [code](src) is written in Python (3.10+), C and SQL.
@@ -15,4 +14,3 @@ Follow along the instructions, you then have a locally-deployed instance of Loca
 Find the [LocalEGA documentation](http://localega.readthedocs.io) hosted on [ReadTheDocs.org](https://readthedocs.org/).
 
 ![Architecture](docs/static/overview.png)
-
