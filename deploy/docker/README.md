@@ -121,9 +121,10 @@ docker compose up -d vault-db
 
 Update the database password for the following database users. First
 use `make psql`, to connect, and then issue the following SQL
-<!-- Alternatively use a postgres client, connect to the server at
-`localhost:5432` with the `postgres` user and the password set in `pg_vault_su_password`, schema `ega`
-and then issue the following SQL commands. -->
+
+> **_NOTE:_**
+Alternatively, use your favorite PostgreSQL client (i.e.: DBeaver), connect to the server at
+`localhost:5432` with user:`postgres`, and the password set in `pg_vault_su_password`, using schema:`ega` and then issue the following SQL commands.
 
 commands:
 
