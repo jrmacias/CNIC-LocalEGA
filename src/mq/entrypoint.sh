@@ -29,7 +29,7 @@ cat > /etc/rabbitmq/definitions.json <<EOF
   "parameters": [
     {
       "name": "from_cega", "vhost": "/", "component": "federation-upstream",
-      "value": { "ack-mode": "on-confirm", "queue": "to_${AFFILIATE_NAME:-to_fega}"",
+      "value": { "ack-mode": "on-confirm", "queue": "to_${AFFILIATE_NAME:-fega}",
 		 "trust-user-id": false, "uri": "${CEGA_CONNECTION}" }
     }
   ],
@@ -58,6 +58,8 @@ cat > /etc/rabbitmq/definitions.json <<EOF
   ]
 }
 EOF
+
+cat /etc/rabbitmq/definitions.json
 
 cat > /etc/rabbitmq/advanced.config <<EOF
 [
