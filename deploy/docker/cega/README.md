@@ -14,11 +14,11 @@ You can start the Central EGA (fake) component with:
 
 ## Start the Central EGA broker
 
- docker-compose up -d cega-mq
+ docker compose up -d cega-mq
 
 ## and after a few seconds, start the Central all-in-one service
 
- docker-compose up -d cega
+ docker compose up -d cega
 
 The Central EGA services are at (and you can update `docker-compose.yml` accordingly)
 
