@@ -18,8 +18,8 @@ It requires:
 We assume you have created a local user and a group named `lega`. If not, you can do it with
 
 ```bash
-    groupadd -r lega
-    useradd -M -g lega lega
+groupadd -r lega
+useradd -M -g lega lega
 ```
 
 ## Sensitive data
@@ -27,10 +27,12 @@ We assume you have created a local user and a group named `lega`. If not, you ca
 Update the configuration files with the proper settings.
 > Hint: copy the supplied sample files and adjust the passwords, paths, etc., appropriately.  
 
- cp docker-compose.yml.sample           docker-compose.yml
- cp ../../src/vault/pg.conf.sample      pg.conf
- cp ../../src/vault/pg_hba.conf.sample  pg_hba.conf
- cp ../../src/handler/conf.ini.sample   lega.ini
+```bash
+cp docker-compose.yml.sample           docker-compose.yml
+cp ../../src/vault/pg.conf.sample      pg.conf
+cp ../../src/vault/pg_hba.conf.sample  pg_hba.conf
+cp ../../src/handler/conf.ini.sample   lega.ini
+```
 
 The included message broker uses an administrator account with
 `admin:secret` as `username:password`. This is up to you to update it
@@ -38,9 +40,11 @@ in your production environment.
 
 Generate the service key with:
 
- ssh-keygen -t ed25519 -f service.key -C "service_key@LocalEGA"
- chown lega service.key
- chown lega service.key.pub
+```bash
+ssh-keygen -t ed25519 -f service.key -C "service_key@LocalEGA"
+chown lega service.key
+chown lega service.key.pub
+```
 
 Note: You will get prompted for the passphrase. Save it and update
 `lega.ini` accordingly, with the proper filepath and the chosen
@@ -48,9 +52,11 @@ passphrase. (it is _not_ recommended _not to use_ any passphrase).
 
 Repeat the same for the master key:
 
- ssh-keygen -t ed25519 -f master.key -C "master_key@LocalEGA"
- chown lega master.key
- chown lega master.key.pub
+```bash
+ssh-keygen -t ed25519 -f master.key -C "master_key@LocalEGA"
+chown lega master.key
+chown lega master.key.pub
+```
 
 ## Mountpoints / File system
 
@@ -69,7 +75,8 @@ mkdir -p data/{inbox,staging,vault,vault.bkp}
 chown lega:lega data/{inbox,staging,vault,vault.bkp}
 
 # Change the access permissions
-chmod 2750 data/inbox # with the setgid bit, the `lega` user can _read_ the inbox files of each user.
+### No needed for data/inbox, the container image will take care of this in its entrypoint.sh
+### chmod 2750 data/inbox # with the setgid bit, the `lega` user can _read_ the inbox files of each user.
                        # Other users then the owner can't.
 chmod 700 data/staging
 chmod 750 data/vault  # lega group needs r,x in order to distribute files
@@ -86,7 +93,6 @@ If you are preparing a FEGA Affiliate (not a FEGA Node), modify  the `docker-com
  mq:
     environment:
   - AFFILIATE_NAME=xxxx
-
 ```
 
 ## Container images
@@ -115,6 +121,10 @@ docker compose up -d vault-db
 
 Update the database password for the following database users. First
 use `make psql`, to connect, and then issue the following SQL
+<!-- Alternatively use a postgres client, connect to the server at
+`localhost:5432` with the `postgres` user and the password set in `pg_vault_su_password`, schema `ega`
+and then issue the following SQL commands. -->
+
 commands:
 
  -- To input data
